@@ -20,7 +20,7 @@ module.exports = merge.smart(webpackConf, {
             template: paths.toPath('src.root/templates') + '/index.ejs',
             inject: true,
             minify: false,
-            filename: paths.toAbsPath('dist.root') + '/index.html',
+            filename: paths.toAbsPath('dist.ssr/templates') + '/index.html',
             modernizr: paths.assetsPath('vendors/modernizr/modernizr.*'),
             chunksSortMode: 'dependency'
         }),

@@ -11,7 +11,8 @@ const paths = {
 
     dist: {
         root: 'public', //where static files are to be saved
-        assets: 'public/assets'
+        assets: 'public/assets',
+        ssr: 'ssr'
     },
 
     publicPath: '/assets/',

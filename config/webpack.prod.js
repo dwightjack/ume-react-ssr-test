@@ -37,7 +37,7 @@ module.exports = merge.smart(webpackConf, {
 
         new HtmlWebpackPlugin({
             template: paths.toPath('src.root/templates') + '/index.ejs',
-            filename: paths.toAbsPath('dist.root') + '/index.html',
+            filename: paths.toAbsPath('dist.ssr/templates') + '/index.html',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,

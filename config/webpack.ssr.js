@@ -4,6 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
+const cssLoaders = require('./style-loaders').loaders;
 const paths = require('./paths');
 const baseConfig = require('./webpack.base');
 
@@ -39,7 +40,7 @@ module.exports = merge.smartStrategy({
     node: 'replace'
 })(baseConfig, {
     entry: {
-        app: [
+        'app.server': [
             './' + paths.toPath('src.assets/styles') + '/index.js'
         ]
     },
@@ -47,6 +48,7 @@ module.exports = merge.smartStrategy({
     target: 'node',
 
     output: {
+        path: paths.toAbsPath('dist.ssr'),
         libraryTarget: 'commonjs2'
     },
 
@@ -55,10 +57,24 @@ module.exports = merge.smartStrategy({
         ...(PRODUCTION ? productionPlugins : [])
     ],
 
+    module: {
+        rules: [{
+            test: /\.css$/,
+            exclude: /(node_modules|vendors)/,
+            use: cssLoaders
+        }]
+    },
+
     externals: nodeExternals({
         whitelist: /\.css$/
     }),
 
-    node: {}
+    node: {},
+
+    resolve: {
+        alias: {
+            'ssr-templates': paths.toAbsPath('dist.ssr/templates')
+        }
+    }
 
 });

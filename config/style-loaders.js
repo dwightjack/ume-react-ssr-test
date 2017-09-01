@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 const loaders = [
-    { loader: 'css-loader',
+    { loader: (process.env.UMEBOSHI_ENV === 'ssr' ? 'css-loader/locals' : 'css-loader'),
         options: {
             modules: true,
             camelCase: true,

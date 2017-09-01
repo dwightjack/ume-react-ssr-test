@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="format-detection" content="telephone=no" />
         <!-- meta -->
-        <% if (htmlWebpackPlugin.options.modernizr) { %>
-        <script defer src="<%- webpackConfig.output.publicPath %><%- htmlWebpackPlugin.options.modernizr %>"></script>
-        <% } %>
+        
+        <script defer src="/assets/vendors/modernizr/modernizr.js"></script>
+        
     </head>
 
     <body>
         <div id="app-root"><!-- app --></div>
         <!-- initialState -->
-        <%= htmlWebpackPlugin.files.webpackManifest %>
-    </body>
+        
+    <script type="text/javascript" src="/assets/js/vendors.js" defer></script><script type="text/javascript" src="/assets/js/app.js" defer></script></body>
 </html>
