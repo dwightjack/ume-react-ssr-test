@@ -11,7 +11,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import Root from '@/containers/Root';
+import Root from './containers/Root';
 
 
 // @see https://github.com/gaearon/react-hot-boilerplate/pull/61#issuecomment-254467020

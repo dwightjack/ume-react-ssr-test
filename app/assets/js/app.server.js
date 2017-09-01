@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 
+import Root from './containers/Root';
 import tmpl from './tmpl/index.ejs';
 /* eslint-enable */
 
@@ -13,14 +14,20 @@ if (__PRODUCTION__ === false) {
     require('source-map-support').install(); //eslint-disable-line global-require
 }
 
-export const renderView = (path, model = {}, resource, callback) => {
-    const history = createHistory(path);
-    const modelState = typeof model === 'string' ? JSON.parse(model) : model;
-    const result = {
-        html: null,
-        status: 404,
-        redirect: null
-    };
+export const render = (context = {}) => {
+    // const { url } = context;
+
+    return new Promise((resolve) => {
+        const html = ReactDOM.renderToString(<Root />);
+
+        context.status = 200; //eslint-disable-line no-param-reassign
+
+        resolve(html);
+    });
+
+
+
+
     match(
         { history, routes: getRoutes(), location: path },
         (error, redirectLocation, renderProps) => {
