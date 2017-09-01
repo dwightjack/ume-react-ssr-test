@@ -5,6 +5,8 @@ const merge = require('webpack-merge');
 const paths = require('./paths');
 const webpackConf = require('./webpack.base');
 
+const styleLoaders = require('./style-loaders').loaders;
+
 module.exports = merge.smart(webpackConf, {
     entry: {
         app: [
@@ -14,6 +16,16 @@ module.exports = merge.smart(webpackConf, {
     },
 
     cache: true,
+
+    module: {
+        rules: [
+            {
+                test: /\.(scss|css)$/,
+                exclude: /(node_modules|vendors)/,
+                use: ['style-loader', ...styleLoaders]
+            }
+        ]
+    },
 
     plugins: [
         new HtmlWebpackPlugin({

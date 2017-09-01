@@ -6,6 +6,8 @@ const merge = require('webpack-merge');
 
 const webpackConf = require('./webpack.base');
 const paths = require('./paths');
+const styleLoaders = require('./style-loaders').loaders;
+
 
 module.exports = merge.smart(webpackConf, {
     entry: {
@@ -18,6 +20,19 @@ module.exports = merge.smart(webpackConf, {
     output: {
         filename: paths.js + '/[name].[chunkhash].js',
         chunkFilename: paths.js + '/[name].[chunkhash].chunk.js'
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.(scss|css)$/,
+                exclude: /(node_modules|vendors)/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: styleLoaders
+                })
+            }
+        ]
     },
 
     plugins: [

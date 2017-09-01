@@ -4,7 +4,7 @@ const history = require('connect-history-api-fallback');
 const address = require('ip').address();
 const middlewares = require('./middlewares');
 const localhost = require('../config/hosts').local;
-const render = require('../ssr/js/app.server');
+const { render } = require('../ssr/js/app.server');
 
 const app = express();
 

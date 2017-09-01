@@ -1,7 +1,7 @@
 const paths = require('./paths');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const PRODUCTION = process.env.NODE_ENV === 'production';
+// const PRODUCTION = process.env.NODE_ENV === 'production';
 
 const loaders = [
     { loader: (process.env.UMEBOSHI_ENV === 'ssr' ? 'css-loader/locals' : 'css-loader'),
@@ -29,10 +29,10 @@ const loaders = [
     }
 ];
 
-module.exports = (PRODUCTION ? ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: loaders
-}) : ['style-loader'].concat(loaders));
+// module.exports = (PRODUCTION ? ExtractTextPlugin.extract({
+//     fallback: 'style-loader',
+//     use: loaders
+// }) : ['style-loader'].concat(loaders));
 
 
 module.exports.loaders = loaders;

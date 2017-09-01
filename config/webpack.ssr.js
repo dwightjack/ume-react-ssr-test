@@ -37,11 +37,12 @@ const productionPlugins = [
 
 module.exports = merge.smartStrategy({
     plugins: 'replace',
-    node: 'replace'
+    node: 'replace',
+    entry: 'replace'
 })(baseConfig, {
     entry: {
         'app.server': [
-            './' + paths.toPath('src.assets/styles') + '/index.js'
+            './' + paths.toPath('src.assets/js') + '/app.server.js'
         ]
     },
 
@@ -59,14 +60,14 @@ module.exports = merge.smartStrategy({
 
     module: {
         rules: [{
-            test: /\.css$/,
+            test: /\.(scss|css)$/,
             exclude: /(node_modules|vendors)/,
             use: cssLoaders
         }]
     },
 
     externals: nodeExternals({
-        whitelist: /\.css$/
+        whitelist: /\.(scss|css)$/
     }),
 
     node: {},

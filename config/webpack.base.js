@@ -7,7 +7,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const srcPath = paths.toAbsPath('src.assets');
 const destPath = paths.toAbsPath('dist.assets');
 
-const styleLoaders = require('./style-loaders');
+const styleLoaders = require('./style-loaders').loader;
 
 module.exports = {
     context: process.cwd(),
@@ -84,10 +84,6 @@ module.exports = {
                 test: /\.json$/,
                 exclude: /(node_modules|vendors)/,
                 loader: 'json-loader'
-            }, {
-                test: /\.(scss|css)$/,
-                exclude: /(node_modules|vendors)/,
-                use: styleLoaders
             }, {
                 test: /\.(eot|svg|ttf|woff|woff2|jpe?g|png|gif)$/,
                 include: [

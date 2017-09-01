@@ -15,7 +15,7 @@ if (__PRODUCTION__ === false) {
     require('source-map-support').install(); //eslint-disable-line global-require
 }
 
-export default (context = {}) => { //eslint-disable-line arrow-body-style
+export const render = (context = {}) => { //eslint-disable-line
     // const { url } = context;
 
     return new Promise((resolve) => {
